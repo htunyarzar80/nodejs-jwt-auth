@@ -1,4 +1,7 @@
 import {
+  USER_LOAD_FAIL,
+  USER_LOAD_REQUEST,
+    USER_LOAD_SUCCESS,
     USER_LOGOUT_FAIL,
     USER_LOGOUT_REQUEST,
     USER_LOGOUT_SUCCESS,
@@ -70,4 +73,22 @@ export const userLogoutAction = () => async (dispatch) => {
         });
         toast.error(error.response.data.error);
     }
+}
+//user profile action
+export const userProfileAction = () => async (dispatch) => {
+  dispatch({ type: USER_LOAD_REQUEST });
+  try {
+      const { data } = await axios.get("/api/userInfo");
+      dispatch({
+          type: USER_LOAD_SUCCESS,
+          payload: data
+      });
+      console.log("data====>",data)
+
+  } catch (error) {
+      dispatch({
+          type: USER_LOAD_FAIL,
+          payload: error.response.data.error
+      });
+  }
 }

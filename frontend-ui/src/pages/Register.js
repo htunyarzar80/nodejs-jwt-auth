@@ -189,7 +189,7 @@ const Register = () => {
 
             <Typography sx={{ color: "#003366", mb: 3 }}>
               Already a Member?
-              <Link to="/login">LogIn</Link>
+              <Link to="/">LogIn</Link>
             </Typography>
 
             <Button

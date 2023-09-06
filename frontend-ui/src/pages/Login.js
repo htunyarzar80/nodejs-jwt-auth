@@ -23,20 +23,20 @@ const validationSchema = yup.object({
 const LogIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //   const { isAuthenticated, userInfo } = useSelector((state) => state.signIn);
-  //   useEffect(() => {
-  //     if (isAuthenticated) {
-  //       if (userInfo.role === 1) {
-  //         navigate("/");
-  //       } else {
-  //         navigate("/");
-  //       }
-  //     }
+    const { isAuthenticated, userInfo } = useSelector((state) => state.userSignIn);
+    useEffect(() => {
+      if (isAuthenticated) {
+        if (userInfo.role === 1) {
+          navigate("/");
+        } else {
+          navigate("/");
+        }
+      }
 
-  //     // if (isAuthenticated) {
-  //     //     navigate('/user/dashboard');
-  //     // }
-  //   }, [isAuthenticated]);
+      if (isAuthenticated) {
+          navigate('/home');
+      }
+    }, [isAuthenticated]);
 
   const formik = useFormik({
     initialValues: {
@@ -48,7 +48,7 @@ const LogIn = () => {
       //  alert(JSON.stringify(values, null, 2));
       dispatch(userSignInAction(values));
       actions.resetForm();
-      navigate("/");
+      // navigate("/");
     },
   });
 
